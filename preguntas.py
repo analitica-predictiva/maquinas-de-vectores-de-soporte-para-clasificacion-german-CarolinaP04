@@ -204,6 +204,7 @@ def pregunta_03():
     from sklearn.svm import SVC
     from sklearn.preprocessing import OneHotEncoder
     from sklearn.pipeline import Pipeline
+    from sklearn.compose import make_column_transformer, make_column_selector  
     
     # Cargue las variables.
     X_train, X_test, y_train, y_test = pregunta_02()
@@ -211,7 +212,7 @@ def pregunta_03():
     # Cree un objeto ColumnTransformer que aplique OneHotEncoder a las columnas
     # tipo texto. Use make_column_selector para seleccionar las columnas. Las
     # columnas numéricas no deben ser transformadas.
-    columnTransformer = ColumnTransformer(
+    columnTransformer = make_column_transformer(
         (
             OneHotEncoder(),
             make_column_selector(dtype_include=object),
